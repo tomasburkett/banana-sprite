@@ -12,9 +12,11 @@ function App() {
   const [apiKey, setApiKey] = useState<string>('');
   const [referenceImage, setReferenceImage] = useState<string | null>(null);
   const [prompt, setPrompt] = useState<string>('');
+  const [useGreenBackground, setUseGreenBackground] = useState<boolean>(false);
   const [status, setStatus] = useState<GenerationStatus>(GenerationStatus.IDLE);
   const [spriteResult, setSpriteResult] = useState<string | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [language, setLanguage] = useState<Language>('ja');
   const [showApiKeyDialog, setShowApiKeyDialog] = useState<boolean>(false);
   const [apiKeyError, setApiKeyError] = useState<string | null>(null);
@@ -76,6 +78,14 @@ function App() {
       localStorage.setItem('banana_sprite_api_key', key.trim());
       setShowApiKeyDialog(false);
       setApiKeyError(null);
+      // Clear error message and show success message
+      setErrorMsg(null);
+      const t = TRANSLATIONS[language];
+      setSuccessMsg(t.apiKeySetSuccess);
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => {
+        setSuccessMsg(null);
+      }, 5000);
     }
   };
 
@@ -107,7 +117,7 @@ function App() {
     try {
       const currentKey = process.env.API_KEY || apiKey;
       
-      const resultBase64 = await generateSprite(currentKey, referenceImage, prompt);
+      const resultBase64 = await generateSprite(currentKey, referenceImage, prompt, useGreenBackground);
       setSpriteResult(resultBase64);
       setStatus(GenerationStatus.COMPLETED);
     } catch (err: any) {
@@ -181,9 +191,34 @@ function App() {
             />
           </div>
 
+          {/* Green Background Option */}
+          <div className="mb-6 flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <input
+              type="checkbox"
+              id="greenBackground"
+              checked={useGreenBackground}
+              onChange={(e) => setUseGreenBackground(e.target.checked)}
+              disabled={status === GenerationStatus.GENERATING_SPRITE}
+              className="w-5 h-5 text-yellow-400 border-gray-300 rounded focus:ring-yellow-400 focus:ring-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            />
+            <label htmlFor="greenBackground" className="flex items-center gap-2 cursor-pointer">
+              <span className="text-sm font-semibold text-gray-900">
+                {t.greenBackgroundLabel}
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
+                {t.greenBackgroundInfo}
+              </span>
+            </label>
+          </div>
+
           {/* Action Area */}
           <div className="flex flex-col items-center justify-center pt-6 border-t border-gray-100">
-            {errorMsg && (
+            {successMsg && (
+                <div className="mb-4 p-3 bg-green-50 text-green-700 rounded-lg text-sm font-medium border border-green-200">
+                    {successMsg}
+                </div>
+            )}
+            {errorMsg && !successMsg && (
                 <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm font-medium border border-red-100">
                     {errorMsg}
                 </div>

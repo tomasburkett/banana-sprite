@@ -1,6 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
-const SYSTEM_PROMPT = `
+const getSystemPrompt = (useGreenBackground: boolean) => {
+  const backgroundInstruction = useGreenBackground
+    ? '2. 出力は必ず「1:1の正方形」で、「完全な緑背景（グリーンバック、クロマキー用）」にすること。背景色はRGB(0, 255, 0)または#00FF00の純粋な緑色を使用すること。'
+    : '2. 出力は必ず「1:1の正方形」で、「完全な白背景」にすること。';
+
+  return `
 あなたは「ドット絵スプライトシート専用ジェネレーター」です。
 
 以下のルールを必ず厳守してください：
@@ -8,7 +13,7 @@ const SYSTEM_PROMPT = `
 1. 参照画像（reference image）のキャラクターを忠実に再現し、
    顔、体型、髪型、衣装、色の特徴を一切変えない。
 
-2. 出力は必ず「1:1の正方形」で、「完全な白背景」にすること。
+${backgroundInstruction}
 
 3. 出力は「4×4の16フレームのスプライトシート」であること。
    - グリッドは均等に区切る
@@ -38,12 +43,15 @@ const SYSTEM_PROMPT = `
 
 以上を完全に守り、スプライト用途に最適化された16フレームの1枚画像を生成してください。
 `;
+};
 
 export const generateSprite = async (
   apiKey: string,
   referenceImageBase64: string,
-  userPrompt: string
+  userPrompt: string,
+  useGreenBackground: boolean = false
 ): Promise<string> => {
+  const SYSTEM_PROMPT = getSystemPrompt(useGreenBackground);
   const ai = new GoogleGenAI({ apiKey });
   
   // Strip prefix if present for API consumption

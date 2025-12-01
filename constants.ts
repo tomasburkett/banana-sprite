@@ -131,6 +131,9 @@ export const TRANSLATIONS = {
     apiKeyHelpLink: "APIキーの取得方法（Google AI Studio）",
     cancel: "キャンセル",
     save: "保存",
+    apiKeySetSuccess: "APIキーが新しく設定されました。",
+    greenBackgroundLabel: "グリーンバック背景を使用",
+    greenBackgroundInfo: "クロマキー用",
     noteGacha: "※ AI生成のため、仕上がりにはばらつき（ガチャ要素）があります。何度か試してみてください。",
     noteOverwrite: "※ 再生成すると現在の結果は上書きされます。必要な画像は先にダウンロードしてください。"
   },
@@ -165,6 +168,9 @@ export const TRANSLATIONS = {
     apiKeyHelpLink: "How to get an API key (Google AI Studio)",
     cancel: "Cancel",
     save: "Save",
+    apiKeySetSuccess: "API key has been set successfully.",
+    greenBackgroundLabel: "Use green background",
+    greenBackgroundInfo: "For chroma key",
     noteGacha: "* Results may vary due to AI randomness. Try multiple times for best results.",
     noteOverwrite: "* Generating again will overwrite the current result. Please download first if needed."
   }
