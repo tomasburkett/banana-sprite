@@ -99,6 +99,75 @@ export const PRESETS: Preset[] = [
   }
 ];
 
+export interface ExpressionPreset {
+  id: string;
+  label: { ja: string; en: string };
+  prompt: string;
+}
+
+export const EXPRESSION_PRESETS: ExpressionPreset[] = [
+  {
+    id: "happy",
+    label: { ja: "喜び (Happy)", en: "Happy" },
+    prompt: `表情付きスプライトシートを作成してください。キャラクターは喜びの表情をしています。
+
+【表情の要件】
+- 目は大きく開き、笑顔で口が開いている
+- 眉毛は上がり、明るい印象
+- 16フレームで表情の変化を表現（笑顔の強弱、瞬きなど）
+- 各フレームで顔パーツ（目・口）の位置が統一されている`
+  },
+  {
+    id: "angry",
+    label: { ja: "怒り (Angry)", en: "Angry" },
+    prompt: `表情付きスプライトシートを作成してください。キャラクターは怒りの表情をしています。
+
+【表情の要件】
+- 目は細く、眉は下がり、口は閉じているか叫んでいる
+- 眉毛は中央に寄り、険しい印象
+- 16フレームで表情の変化を表現（怒りの強弱、瞬きなど）
+- 各フレームで顔パーツ（目・口）の位置が統一されている`
+  },
+  {
+    id: "sad",
+    label: { ja: "悲しみ (Sad)", en: "Sad" },
+    prompt: `表情付きスプライトシートを作成してください。キャラクターは悲しみの表情をしています。
+
+【表情の要件】
+- 目は下がり、口は下向きに曲がっている
+- 眉毛は下がり、憂いのある印象
+- 16フレームで表情の変化を表現（悲しみの強弱、涙、瞬きなど）
+- 各フレームで顔パーツ（目・口）の位置が統一されている`
+  },
+  {
+    id: "surprised",
+    label: { ja: "驚き (Surprised)", en: "Surprised" },
+    prompt: `表情付きスプライトシートを作成してください。キャラクターは驚きの表情をしています。
+
+【表情の要件】
+- 目は大きく見開き、口は開いている
+- 眉毛は上がり、驚いた印象
+- 16フレームで表情の変化を表現（驚きの強弱、瞬きなど）
+- 各フレームで顔パーツ（目・口）の位置が統一されている`
+  },
+  {
+    id: "neutral",
+    label: { ja: "無表情 (Neutral)", en: "Neutral" },
+    prompt: `表情付きスプライトシートを作成してください。キャラクターは無表情です。
+
+【表情の要件】
+- 目は普通の大きさ、口は閉じている
+- 眉毛は自然な位置、感情のない印象
+- 16フレームで瞬きなどの自然な動きを表現
+- 各フレームで顔パーツ（目・口）の位置が統一されている`
+  },
+  {
+    id: "custom",
+    label: { ja: "カスタム (Custom)", en: "Custom" },
+    prompt: ``
+  }
+];
+
 export const TRANSLATIONS = {
   ja: {
     subtitle: "Nano Banana Pro搭載 ドット絵ジェネレーター",
@@ -135,7 +204,36 @@ export const TRANSLATIONS = {
     greenBackgroundLabel: "グリーンバック背景を使用",
     greenBackgroundInfo: "クロマキー用",
     noteGacha: "※ AI生成のため、仕上がりにはばらつき（ガチャ要素）があります。何度か試してみてください。",
-    noteOverwrite: "※ 再生成すると現在の結果は上書きされます。必要な画像は先にダウンロードしてください。"
+    noteOverwrite: "※ 再生成すると現在の結果は上書きされます。必要な画像は先にダウンロードしてください。",
+    faceAnimation: "表情付きアニメーション",
+    recordingStart: "録画開始",
+    recordingStop: "録画停止",
+    recordingCancel: "キャンセル",
+    recordingStatus: "録画ステータス",
+    microphonePermission: "マイク許可",
+    microphoneNotAllowed: "マイクが許可されていません",
+    audioInputMode: "音声入力モード",
+    audioFile: "ファイル",
+    audioMicrophone: "マイク",
+    uploadAudioFile: "音声ファイルをアップロード",
+    volumeThreshold: "音量しきい値",
+    blinkInterval: "瞬き間隔",
+    debugGuides: "デバッグガイド",
+    downloadWebm: "WebM動画を保存",
+    recordingIdle: "待機中",
+    recordingRecording: "録画中...",
+    recordingSaving: "保存中...",
+    webmNotSupported: "WebM録画はこのブラウザではサポートされていません",
+    expressionEditor: "表情エディター",
+    expressionEditorDescription: "スプライトシートをアップロードして、音声に同期した表情付きアニメーションを作成できます",
+    selectExpression: "表情の種類を選ぶ",
+    expressionPrompt: "表情のプロンプト",
+    expressionPromptPlaceholder: "表情の詳細をここに入力...（例: 笑顔、怒り、悲しみなど）",
+    generateExpressionSprite: "表情付きスプライトを生成",
+    expressionGenerating: "AIが描画中...",
+    uploadSpriteSheet: "スプライトシートをアップロード",
+    selectSpriteSheet: "スプライトシートを選択",
+    selectDifferentSpriteSheet: "別のスプライトシートを選択"
   },
   en: {
     subtitle: "Powered by Gemini Nano Banana Pro",
@@ -172,6 +270,35 @@ export const TRANSLATIONS = {
     greenBackgroundLabel: "Use green background",
     greenBackgroundInfo: "For chroma key",
     noteGacha: "* Results may vary due to AI randomness. Try multiple times for best results.",
-    noteOverwrite: "* Generating again will overwrite the current result. Please download first if needed."
+    noteOverwrite: "* Generating again will overwrite the current result. Please download first if needed.",
+    faceAnimation: "Face Animation",
+    recordingStart: "Start Recording",
+    recordingStop: "Stop Recording",
+    recordingCancel: "Cancel",
+    recordingStatus: "Recording Status",
+    microphonePermission: "Microphone Permission",
+    microphoneNotAllowed: "Microphone not allowed",
+    audioInputMode: "Audio Input Mode",
+    audioFile: "File",
+    audioMicrophone: "Microphone",
+    uploadAudioFile: "Upload Audio File",
+    volumeThreshold: "Volume Threshold",
+    blinkInterval: "Blink Interval",
+    debugGuides: "Debug Guides",
+    downloadWebm: "Download WebM Video",
+    recordingIdle: "Idle",
+    recordingRecording: "Recording...",
+    recordingSaving: "Saving...",
+    webmNotSupported: "WebM recording is not supported in this browser",
+    expressionEditor: "Expression Editor",
+    expressionEditorDescription: "Upload a sprite sheet and create animated expressions synchronized with audio",
+    selectExpression: "Select Expression Type",
+    expressionPrompt: "Expression Prompt",
+    expressionPromptPlaceholder: "Describe the expression details here...",
+    generateExpressionSprite: "Generate Expression Sprite",
+    expressionGenerating: "Generating...",
+    uploadSpriteSheet: "Upload Sprite Sheet",
+    selectSpriteSheet: "Select Sprite Sheet",
+    selectDifferentSpriteSheet: "Select Different Sprite Sheet"
   }
 };

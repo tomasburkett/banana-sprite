@@ -43,6 +43,22 @@ export const processInputImage = (file: File): Promise<string> => {
 };
 
 /**
+ * Validates that a sprite sheet image is square and divisible by 4.
+ * @throws Error if validation fails
+ */
+export const validateSpriteSheetSize = (img: HTMLImageElement): void => {
+  if (img.width !== img.height) {
+    throw new Error('Sprite sheet must be square (width === height)');
+  }
+  if (img.width % 4 !== 0) {
+    throw new Error('Sprite sheet dimensions must be divisible by 4');
+  }
+  if (img.height % 4 !== 0) {
+    throw new Error('Sprite sheet dimensions must be divisible by 4');
+  }
+};
+
+/**
  * Slices a 4x4 sprite sheet into 16 individual base64 images.
  */
 export const sliceSpriteSheet = (spriteSheetBase64: string): Promise<string[]> => {
@@ -50,6 +66,13 @@ export const sliceSpriteSheet = (spriteSheetBase64: string): Promise<string[]> =
     const img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = () => {
+      try {
+        validateSpriteSheetSize(img);
+      } catch (err) {
+        reject(err);
+        return;
+      }
+      
       const frameWidth = img.width / 4;
       const frameHeight = img.height / 4;
       const frames: string[] = [];

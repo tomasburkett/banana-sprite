@@ -15,6 +15,41 @@ export enum GenerationStatus {
 
 export type Language = 'ja' | 'en';
 
+// Face animation types
+export type FacePartKey = 'eyesOpen' | 'eyesClosed' | 'mouthOpen' | 'mouthClosed';
+
+export interface FacePartRect {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface FacePartRectMap {
+  eyesOpen: FacePartRect;
+  eyesClosed: FacePartRect;
+  mouthOpen: FacePartRect;
+  mouthClosed: FacePartRect;
+}
+
+export interface FacePartImages {
+  eyesOpen: string; // base64 data URL
+  eyesClosed: string;
+  mouthOpen: string;
+  mouthClosed: string;
+}
+
+export type MouthState = 'open' | 'closed';
+export type EyeState = 'open' | 'closed';
+
+export type RecordingState = 'idle' | 'recording' | 'saving';
+
+export interface Frame {
+  dataUrl: string;
+  width: number;
+  height: number;
+}
+
 declare global {
   interface AIStudio {
     hasSelectedApiKey: () => Promise<boolean>;

@@ -1,10 +1,65 @@
 import { GoogleGenAI } from "@google/genai";
 
-const getSystemPrompt = (useGreenBackground: boolean) => {
+const getSystemPrompt = (useGreenBackground: boolean, isExpression: boolean = false) => {
   const backgroundInstruction = useGreenBackground
     ? '2. 出力は必ず「1:1の正方形」で、「完全な緑背景（グリーンバック、クロマキー用）」にすること。背景色はRGB(0, 255, 0)または#00FF00の純粋な緑色を使用すること。'
     : '2. 出力は必ず「1:1の正方形」で、「完全な白背景」にすること。';
 
+  if (isExpression) {
+    // 表情差分用のプロンプト
+    return `
+あなたは「表情付きスプライトシート専用ジェネレーター」です。
+
+以下のルールを必ず厳守してください：
+
+1. 参照画像（reference image）のキャラクターを忠実に再現し、
+   顔、体型、髪型、衣装、色の特徴、描画スタイルを一切変えない。
+   参照画像がドット絵ならドット絵、イラストならイラスト、3Dなら3Dと、同じスタイルで描く。
+
+${backgroundInstruction}
+
+3. 出力は「4×4の16フレームのスプライトシート」であること。
+   - グリッドは均等に区切る
+   - フレーム番号は 左→右、上→下 の順
+   - 16フレームをすべて埋める（空白なし）
+
+4. キャラクターは「右向き（right-facing）」で統一する。
+
+5. 【最重要】全フレームで、キャラクターの位置・大きさ・頭身・輪郭の太さ・体のポーズを完全に一致させる。
+   コマごとの破綻や形崩れは厳禁。
+   体の動きは一切なく、立ち姿勢のまま固定する。
+
+7. 【表情の要件】
+   - 各フレームでは、指定された表情を16フレームで表現する
+   - 表情の変化は「目」と「口」のみで表現する
+   - 目は「開いている」と「閉じている」の2パターンを使用
+   - 口は「開いている」と「閉じている」の2パターンを使用
+   - 各フレームで目と口の組み合わせを変えることで表情の変化を表現
+   - 瞬き（目を閉じる）を自然に含める
+   - 口パク（口を開閉する）を自然に含める
+   - 眉毛の位置も表情に合わせて微調整する
+
+8. 【顔パーツの位置統一】
+   - 全16フレームで、目・口・眉毛の位置が完全に一致していること
+   - 顔パーツの位置がずれないように、各フレームで同じ座標に描く
+   - 顔パーツの大きさも全フレームで統一する
+
+9. 不要な演出・背景・エフェクトは禁止
+   - キャラ本体の表情のみ描く
+   - 体の動きは一切なし
+
+【表情アニメーション品質の要件】
+- 全16フレームは自然な表情の変化として構成する。
+- 瞬きと口パクを組み合わせて、生き生きとした表情を表現する。
+- キャラの位置・大きさ・頭の高さ・輪郭の太さ・体のポーズを全フレームで完全一致させる。
+- 顔パーツ（目・口・眉毛）の位置と大きさを全フレームで完全一致させる。
+- 表情の変化は滑らかで自然なものにする。
+
+以上を完全に守り、表情差分用に最適化された16フレームの1枚画像を生成してください。
+`;
+  }
+
+  // 動き用のプロンプト（既存）
   return `
 あなたは「ドット絵スプライトシート専用ジェネレーター」です。
 
@@ -49,9 +104,10 @@ export const generateSprite = async (
   apiKey: string,
   referenceImageBase64: string,
   userPrompt: string,
-  useGreenBackground: boolean = false
+  useGreenBackground: boolean = false,
+  isExpression: boolean = false
 ): Promise<string> => {
-  const SYSTEM_PROMPT = getSystemPrompt(useGreenBackground);
+  const SYSTEM_PROMPT = getSystemPrompt(useGreenBackground, isExpression);
   const ai = new GoogleGenAI({ apiKey });
   
   // Strip prefix if present for API consumption
@@ -60,12 +116,13 @@ export const generateSprite = async (
   try {
     // Using gemini-3-pro-image-preview as requested for high quality editing/generation
     // "Nano Banana Pro" maps to gemini-3-pro-image-preview in the context of this app's requirements.
+    const requestLabel = isExpression ? 'Expression' : 'Movement';
     const response = await ai.models.generateContent({
       model: 'gemini-3-pro-image-preview',
       contents: {
         parts: [
           {
-            text: `${SYSTEM_PROMPT}\n\nUser Request (Movement): ${userPrompt}`
+            text: `${SYSTEM_PROMPT}\n\nUser Request (${requestLabel}): ${userPrompt}`
           },
           {
             inlineData: {

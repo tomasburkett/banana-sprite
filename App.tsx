@@ -3,6 +3,7 @@ import Header from './components/Header';
 import ImageUploader from './components/ImageUploader';
 import PromptInput from './components/PromptInput';
 import SpriteDisplay from './components/SpriteDisplay';
+import FaceAnimationEditor from './components/FaceAnimationEditor';
 import ApiKeyDialog from './components/ApiKeyDialog';
 import { generateSprite } from './services/geminiService';
 import { GenerationStatus, Language } from './types';
@@ -20,6 +21,7 @@ function App() {
   const [language, setLanguage] = useState<Language>('ja');
   const [showApiKeyDialog, setShowApiKeyDialog] = useState<boolean>(false);
   const [apiKeyError, setApiKeyError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'generate' | 'face'>('generate');
 
   // Initialize API Key (Pro Model requires user selection)
   useEffect(() => {
@@ -156,8 +158,36 @@ function App() {
 
       <main className="flex-grow max-w-5xl mx-auto w-full px-4 py-8">
         
-        {/* Intro / Status */}
-        <div className="mb-8 text-center">
+        {/* Tabs */}
+        <div className="mb-6 border-b border-gray-200">
+          <div className="flex">
+            <button
+              onClick={() => setActiveTab('generate')}
+              className={`px-6 py-3 font-semibold text-sm transition-colors ${
+                activeTab === 'generate'
+                  ? 'border-b-2 border-yellow-400 text-yellow-900 bg-yellow-50'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              {language === 'ja' ? 'スプライト生成' : 'Generate Sprite'}
+            </button>
+            <button
+              onClick={() => setActiveTab('face')}
+              className={`px-6 py-3 font-semibold text-sm transition-colors ${
+                activeTab === 'face'
+                  ? 'border-b-2 border-yellow-400 text-yellow-900 bg-yellow-50'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+              }`}
+            >
+              {TRANSLATIONS[language].expressionEditor}
+            </button>
+          </div>
+        </div>
+
+        {activeTab === 'generate' && (
+          <>
+            {/* Intro / Status */}
+            <div className="mb-8 text-center">
             <h2 className="text-3xl font-bold mb-2 text-gray-800">{t.introTitle}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
                 {t.introText}
@@ -263,9 +293,15 @@ function App() {
           </div>
         </div>
 
-        {/* Results */}
-        {spriteResult && (
-          <SpriteDisplay spriteSheetBase64={spriteResult} language={language} />
+            {/* Results */}
+            {spriteResult && (
+              <SpriteDisplay spriteSheetBase64={spriteResult} language={language} />
+            )}
+          </>
+        )}
+
+        {activeTab === 'face' && (
+          <FaceAnimationEditor language={language} />
         )}
 
       </main>
